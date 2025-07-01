@@ -15,26 +15,151 @@
   <div id="root"></div>
 
   <script type="text/babel">
-    // Datos (mantén los mismos datos que proporcionaste, pero aquí va el resto del código JSX)
     const data = [
       { month: 'Ene 2025', 'Jezabel Toribio': 9, 'David Ovalle': 6, 'Yscania Munoz': 3, 'Eloisa Quinones': 5, 'Johanny Garcia': 5, 'Manuel Hidalgo': 7, 'Frederic Olivo': 0, 'Emmanuel Polanco': 4, 'Guliett Barniquez': 0, 'Natacha Barrios': 0 },
-      // ... resto de los datos
+      { month: 'Feb 2025', 'Jezabel Toribio': 10, 'David Ovalle': 7, 'Yscania Munoz': 8, 'Eloisa Quinones': 7, 'Johanny Garcia': 11, 'Manuel Hidalgo': 8, 'Frederic Olivo': 0, 'Emmanuel Polanco': 3, 'Guliett Barniquez': 0, 'Natacha Barrios': 0 },
+      { month: 'Mar 2025', 'Jezabel Toribio': 7, 'David Ovalle': 4, 'Yscania Munoz': 6, 'Eloisa Quinones': 6, 'Johanny Garcia': 6, 'Manuel Hidalgo': 6, 'Frederic Olivo': 3, 'Emmanuel Polanco': 4, 'Guliett Barniquez': 3, 'Natacha Barrios': 0 },
+      { month: 'Abr 2025', 'Jezabel Toribio': 5, 'David Ovalle': 8, 'Yscania Munoz': 2, 'Eloisa Quinones': 6, 'Johanny Garcia': 6, 'Manuel Hidalgo': 6, 'Frederic Olivo': 1, 'Emmanuel Polanco': 0, 'Guliett Barniquez': 4, 'Natacha Barrios': 0 },
+      { month: 'May 2025', 'Jezabel Toribio': 6, 'David Ovalle': 2, 'Yscania Munoz': 0, 'Eloisa Quinones': 0, 'Johanny Garcia': 4, 'Manuel Hidalgo': 4, 'Frederic Olivo': 2, 'Emmanuel Polanco': 0, 'Guliett Barniquez': 2, 'Natacha Barrios': 0 },
+      { month: 'Jun 2025', 'Jezabel Toribio': 2, 'David Ovalle': 2, 'Yscania Munoz': 0, 'Eloisa Quinones': 0, 'Johanny Garcia': 1, 'Manuel Hidalgo': 0, 'Frederic Olivo': 1, 'Emmanuel Polanco': 0, 'Guliett Barniquez': 2, 'Natacha Barrios': 1 },
+      { month: 'Jul 2025', 'Jezabel Toribio': 0, 'David Ovalle': 0, 'Yscania Munoz': 0, 'Eloisa Quinones': 0, 'Johanny Garcia': 0, 'Manuel Hidalgo': 0, 'Frederic Olivo': 0, 'Emmanuel Polanco': 0, 'Guliett Barniquez': 0, 'Natacha Barrios': 0 }
     ];
+
     const colors = {
       'Jezabel Toribio': '#FF6B6B',
-      // ... resto de los colores
+      'David Ovalle': '#4ECDC4',
+      'Yscania Munoz': '#45B7D1',
+      'Eloisa Quinones': '#96CEB4',
+      'Johanny Garcia': '#FFEEAD',
+      'Manuel Hidalgo': '#D4A5A5',
+      'Frederic Olivo': '#9B59B6',
+      'Emmanuel Polanco': '#3498DB',
+      'Guliett Barniquez': '#E74C3C',
+      'Natacha Barrios': '#7D3C98'
     };
+
     const cancellationReasons = {
       'Jezabel Toribio': [
         { reason: 'CANCELLATION DUE TO NSF', count: 9, percentage: 28.13 },
-        // ... resto de las razones
+        { reason: 'No puede pagar el programa', count: 5, percentage: 15.63 },
+        { reason: 'No se pudo contactar al cliente para retencion', count: 3, percentage: 9.38 },
+        { reason: 'Cliente dice que no le interesa el programa', count: 2, percentage: 6.25 },
+        { reason: 'Familiar le pagara la deuda', count: 2, percentage: 6.25 },
+        { reason: 'Consiguio un prestamo', count: 2, percentage: 6.25 },
+        { reason: 'Otras razones', count: 7, percentage: 21.88 },
+        { reason: 'Cliente no quiere que se le dañe el credito', count: 1, percentage: 3.13 },
+        { reason: 'Complicaciones medicas No puede pagar Programa', count: 1, percentage: 3.13 }
       ],
-      // ... resto de los representantes
+      'David Ovalle': [
+        { reason: 'Familiar le pagara la deuda', count: 5, percentage: 20.83 },
+        { reason: 'CANCELLATION DUE TO NSF', count: 4, percentage: 16.67 },
+        { reason: 'Cliente no quiere que se le dañe el credito', count: 3, percentage: 12.50 },
+        { reason: 'Cliente dice que no le interesa el programa', count: 2, percentage: 8.33 },
+        { reason: 'No puede pagar el programa', count: 2, percentage: 8.33 },
+        { reason: 'Cliente pagara el mismo las deudas', count: 2, percentage: 8.33 },
+        { reason: 'bankruptcy', count: 2, percentage: 8.33 },
+        { reason: 'No vio progreso en el programa', count: 1, percentage: 4.17 },
+        { reason: 'Otras razones', count: 3, percentage: 12.50 }
+      ],
+      'Yscania Munoz': [
+        { reason: 'CANCELLATION DUE TO NSF', count: 5, percentage: 20.83 },
+        { reason: 'No puede pagar el programa', count: 4, percentage: 16.67 },
+        { reason: 'Consiguio un prestamo', count: 3, percentage: 12.50 },
+        { reason: 'Cliente esta con otra compañia', count: 3, percentage: 12.50 },
+        { reason: 'No se pudo contactar al cliente para retencion', count: 1, percentage: 4.17 },
+        { reason: 'Cliente dice que no le interesa el programa', count: 1, percentage: 4.17 },
+        { reason: 'Se mudo fuera dle pais no regresara', count: 1, percentage: 4.17 },
+        { reason: 'Le robaron la indentidad esta en un proceso judicial', count: 1, percentage: 4.17 },
+        { reason: 'El cliente esta interesado en un prestamo de consolidacion', count: 1, percentage: 4.17 },
+        { reason: 'Otras razones', count: 4, percentage: 16.67 }
+      ],
+      'Eloisa Quinones': [
+        { reason: 'CANCELLATION DUE TO NSF', count: 6, percentage: 23.08 },
+        { reason: 'Familiar le pagara la deuda', count: 2, percentage: 7.69 },
+        { reason: 'No se pudo contactar al cliente para retencion', count: 2, percentage: 7.69 },
+        { reason: 'No puede pagar el programa', count: 2, percentage: 7.69 },
+        { reason: 'Cliente pagara el mismo las deudas', count: 2, percentage: 7.69 },
+        { reason: 'bankruptcy', count: 1, percentage: 3.85 },
+        { reason: 'No se siente conforme con el servicio', count: 1, percentage: 3.85 },
+        { reason: 'Cliente no quizo dar razon', count: 1, percentage: 3.85 },
+        { reason: 'Los acreedores le están llamando mucho dice que pagar el mismo las deudas', count: 1, percentage: 3.85 },
+        { reason: 'Otras razones', count: 5, percentage: 19.23 },
+        { reason: 'Cleinte se divorcio, las deudas estan anombre de ambos no quiere pagarlas sola', count: 1, percentage: 3.85 },
+        { reason: 'El esposo es veterano y no se encuentra bien de salud ni mentalmente; no recuerda haberse inscrito en el programa. La co-aplicante, su esposa, también desconocía el proceso y solicitó la cancelación muy molesta.', count: 1, percentage: 3.85 }
+      ],
+      'Johanny Garcia': [
+        { reason: 'Familiar le pagara la deuda', count: 4, percentage: 14.29 },
+        { reason: 'Cliente pagara el mismo las deudas', count: 4, percentage: 14.29 },
+        { reason: 'CANCELLATION DUE TO NSF', count: 3, percentage: 10.71 },
+        { reason: 'bankruptcy', count: 3, percentage: 10.71 },
+        { reason: 'No puede pagar el programa', count: 3, percentage: 10.71 },
+        { reason: 'No se pudo contactar al cliente para retencion', count: 2, percentage: 7.14 },
+        { reason: 'Cliente dice que no le interesa el programa', count: 1, percentage: 3.57 },
+        { reason: 'Recivio una demanda esta asustado', count: 1, percentage: 3.57 },
+        { reason: 'Consiguio un prestamo', count: 1, percentage: 3.57 },
+        { reason: 'La clienta está comprando una casa y el banco le exige salir del programa para aprobar el préstamo.', count: 1, percentage: 3.57 },
+        { reason: 'Cliente no quiere que se le dañe el credito', count: 1, percentage: 3.57 },
+        { reason: 'Negocio directo con el acreedor', count: 1, percentage: 3.57 },
+        { reason: 'Otras razones', count: 3, percentage: 10.71 }
+      ],
+      'Manuel Hidalgo': [
+        { reason: 'Familiar le pagara la deuda', count: 3, percentage: 11.54 },
+        { reason: 'CANCELLATION DUE TO NSF', count: 3, percentage: 11.54 },
+        { reason: 'No puede pagar el programa', count: 3, percentage: 11.54 },
+        { reason: 'Cliente pagara el mismo las deudas', count: 5, percentage: 19.23 },
+        { reason: 'bankruptcy', count: 2, percentage: 7.69 },
+        { reason: 'No se pudo contactar al cliente para retencion', count: 1, percentage: 3.85 },
+        { reason: 'Cliente dice que no le interesa el programa', count: 1, percentage: 3.85 },
+        { reason: 'Recivio una demanda esta asustado', count: 1, percentage: 3.85 },
+        { reason: 'Consiguio un prestamo', count: 1, percentage: 3.85 },
+        { reason: 'Cliente prefiere hacer pagos minimos', count: 1, percentage: 3.85 },
+        { reason: 'Cliente prefiere pagar el mismo', count: 1, percentage: 3.85 },
+        { reason: 'Otras razones', count: 4, percentage: 15.38 }
+      ],
+      'Frederic Olivo': [
+        { reason: 'No se pudo contactar al cliente para retencion', count: 2, percentage: 40.00 },
+        { reason: 'Se fue a otra compañia', count: 1, percentage: 20.00 },
+        { reason: 'No a visto progreso en su programa', count: 1, percentage: 20.00 },
+        { reason: 'Negocio directo con el acreedor', count: 1, percentage: 20.00 }
+      ],
+      'Emmanuel Polanco': [
+        { reason: 'CANCELLATION DUE TO NSF', count: 4, percentage: 28.57 },
+        { reason: 'No puede pagar el programa', count: 2, percentage: 14.29 },
+        { reason: 'Cliente no quiere que se le dañe el credito', count: 2, percentage: 14.29 },
+        { reason: 'Cliente no se siente seguro con el programa', count: 1, percentage: 7.14 },
+        { reason: 'No quiere que se le dañe el crédito, los acreedores le están llamando mucho dice que pagar el mismo las deudas.', count: 1, percentage: 7.14 },
+        { reason: 'Múltiples preocupaciones sobre el programa', count: 1, percentage: 7.14 },
+        { reason: 'Otras razones', count: 3, percentage: 21.43 }
+      ],
+      'Guliett Barniquez': [
+        { reason: 'CANCELLATION DUE TO NSF', count: 3, percentage: 25.00 },
+        { reason: 'No puede pagar el programa', count: 2, percentage: 16.67 },
+        { reason: 'No se pudo contactar al cliente para retencion', count: 1, percentage: 8.33 },
+        { reason: 'Cliente se va del pais', count: 1, percentage: 8.33 },
+        { reason: 'Pagar las deudas de otra manera', count: 1, percentage: 8.33 },
+        { reason: 'bankruptcy', count: 1, percentage: 8.33 },
+        { reason: 'El cliente recibio un prestamo', count: 1, percentage: 8.33 },
+        { reason: 'Cliente esta en otro programa', count: 1, percentage: 8.33 },
+        { reason: 'Familiar no esta de acuerdo con el programa', count: 1, percentage: 8.33 }
+      ],
+      'Natacha Barrios': [
+        { reason: 'Negocio directo con el acreedor', count: 1, percentage: 100.00 }
+      ]
     };
+
     const overallReasons = [
       { reason: 'CANCELLATION DUE TO NSF', percentage: 21.03 },
-      // ... resto de las razones globales
+      { reason: 'Familiar le pagara la deuda', percentage: 12.07 },
+      { reason: 'No puede pagar el programa', percentage: 11.21 },
+      { reason: 'Cliente pagara el mismo las deudas', percentage: 10.34 },
+      { reason: 'No se pudo contactar al cliente para retencion', percentage: 6.90 },
+      { reason: 'Consiguio un prestamo', percentage: 5.17 },
+      { reason: 'bankruptcy', percentage: 5.17 },
+      { reason: 'Cliente dice que no le interesa el programa', percentage: 4.31 },
+      { reason: 'Cliente no quiere que se le dañe el credito', percentage: 4.31 },
+      { reason: 'Otras razones', percentage: 19.83 }
     ];
+
     const paymentClearedData = {
       totalClients: 116,
       clearedFirstPayment: 40,
