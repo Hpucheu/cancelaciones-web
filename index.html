@@ -3,252 +3,241 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cancelaciones Interactivo por Mes y Representante</title>
-  <script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
-  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.min.js"></script>
+  <title>Cancelaciones por Mes y Representante</title>
+  <style>
+    .chart-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .chart-bar {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    .month {
+      width: 100px;
+      text-align: right;
+      padding-right: 10px;
+      font-weight: bold;
+    }
+    .bars {
+      flex-grow: 1;
+      display: flex;
+      height: 30px;
+    }
+    .bar {
+      height: 100%;
+      margin-right: 2px;
+    }
+    .legend {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .legend-item {
+      display: inline-block;
+      margin: 0 10px;
+    }
+    .legend-color {
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-right: 5px;
+    }
+    .table-container {
+      margin-top: 20px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .payment-stats {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .stat-box {
+      text-align: center;
+    }
+  </style>
 </head>
 <body class="bg-gray-100 p-6">
-  <div id="root"></div>
+  <div class="chart-container">
+    <h2 class="text-2xl font-bold mb-4 text-center">Cancelaciones por Mes y Representante</h2>
+    <div class="chart-bar">
+      <div class="month">Ene 2025</div>
+      <div class="bars">
+        <div class="bar" style="background-color: #FF6B6B; width: 9%;"></div> <!-- Jezabel Toribio -->
+        <div class="bar" style="background-color: #4ECDC4; width: 6%;"></div> <!-- David Ovalle -->
+        <div class="bar" style="background-color: #45B7D1; width: 3%;"></div> <!-- Yscania Munoz -->
+        <div class="bar" style="background-color: #96CEB4; width: 5%;"></div> <!-- Eloisa Quinones -->
+        <div class="bar" style="background-color: #FFEEAD; width: 5%;"></div> <!-- Johanny Garcia -->
+        <div class="bar" style="background-color: #D4A5A5; width: 7%;"></div> <!-- Manuel Hidalgo -->
+        <div class="bar" style="background-color: #9B59B6; width: 0%;"></div> <!-- Frederic Olivo -->
+        <div class="bar" style="background-color: #3498DB; width: 4%;"></div> <!-- Emmanuel Polanco -->
+        <div class="bar" style="background-color: #E74C3C; width: 0%;"></div> <!-- Guliett Barniquez -->
+        <div class="bar" style="background-color: #7D3C98; width: 0%;"></div> <!-- Natacha Barrios -->
+      </div>
+    </div>
+    <div class="chart-bar">
+      <div class="month">Feb 2025</div>
+      <div class="bars">
+        <div class="bar" style="background-color: #FF6B6B; width: 10%;"></div>
+        <div class="bar" style="background-color: #4ECDC4; width: 7%;"></div>
+        <div class="bar" style="background-color: #45B7D1; width: 8%;"></div>
+        <div class="bar" style="background-color: #96CEB4; width: 7%;"></div>
+        <div class="bar" style="background-color: #FFEEAD; width: 11%;"></div>
+        <div class="bar" style="background-color: #D4A5A5; width: 8%;"></div>
+        <div class="bar" style="background-color: #9B59B6; width: 0%;"></div>
+        <div class="bar" style="background-color: #3498DB; width: 3%;"></div>
+        <div class="bar" style="background-color: #E74C3C; width: 0%;"></div>
+        <div class="bar" style="background-color: #7D3C98; width: 0%;"></div>
+      </div>
+    </div>
+    <div class="chart-bar">
+      <div class="month">Mar 2025</div>
+      <div class="bars">
+        <div class="bar" style="background-color: #FF6B6B; width: 7%;"></div>
+        <div class="bar" style="background-color: #4ECDC4; width: 4%;"></div>
+        <div class="bar" style="background-color: #45B7D1; width: 6%;"></div>
+        <div class="bar" style="background-color: #96CEB4; width: 6%;"></div>
+        <div class="bar" style="background-color: #FFEEAD; width: 6%;"></div>
+        <div class="bar" style="background-color: #D4A5A5; width: 6%;"></div>
+        <div class="bar" style="background-color: #9B59B6; width: 3%;"></div>
+        <div class="bar" style="background-color: #3498DB; width: 4%;"></div>
+        <div class="bar" style="background-color: #E74C3C; width: 3%;"></div>
+        <div class="bar" style="background-color: #7D3C98; width: 0%;"></div>
+      </div>
+    </div>
+    <div class="chart-bar">
+      <div class="month">Abr 2025</div>
+      <div class="bars">
+        <div class="bar" style="background-color: #FF6B6B; width: 5%;"></div>
+        <div class="bar" style="background-color: #4ECDC4; width: 8%;"></div>
+        <div class="bar" style="background-color: #45B7D1; width: 2%;"></div>
+        <div class="bar" style="background-color: #96CEB4; width: 6%;"></div>
+        <div class="bar" style="background-color: #FFEEAD; width: 6%;"></div>
+        <div class="bar" style="background-color: #D4A5A5; width: 6%;"></div>
+        <div class="bar" style="background-color: #9B59B6; width: 1%;"></div>
+        <div class="bar" style="background-color: #3498DB; width: 0%;"></div>
+        <div class="bar" style="background-color: #E74C3C; width: 4%;"></div>
+        <div class="bar" style="background-color: #7D3C98; width: 0%;"></div>
+      </div>
+    </div>
+    <div class="chart-bar">
+      <div class="month">May 2025</div>
+      <div class="bars">
+        <div class="bar" style="background-color: #FF6B6B; width: 6%;"></div>
+        <div class="bar" style="background-color: #4ECDC4; width: 2%;"></div>
+        <div class="bar" style="background-color: #45B7D1; width: 0%;"></div>
+        <div class="bar" style="background-color: #96CEB4; width: 0%;"></div>
+        <div class="bar" style="background-color: #FFEEAD; width: 4%;"></div>
+        <div class="bar" style="background-color: #D4A5A5; width: 4%;"></div>
+        <div class="bar" style="background-color: #9B59B6; width: 2%;"></div>
+        <div class="bar" style="background-color: #3498DB; width: 0%;"></div>
+        <div class="bar" style="background-color: #E74C3C; width: 2%;"></div>
+        <div class="bar" style="background-color: #7D3C98; width: 0%;"></div>
+      </div>
+    </div>
+    <div class="chart-bar">
+      <div class="month">Jun 2025</div>
+      <div class="bars">
+        <div class="bar" style="background-color: #FF6B6B; width: 2%;"></div>
+        <div class="bar" style="background-color: #4ECDC4; width: 2%;"></div>
+        <div class="bar" style="background-color: #45B7D1; width: 0%;"></div>
+        <div class="bar" style="background-color: #96CEB4; width: 0%;"></div>
+        <div class="bar" style="background-color: #FFEEAD; width: 1%;"></div>
+        <div class="bar" style="background-color: #D4A5A5; width: 0%;"></div>
+        <div class="bar" style="background-color: #9B59B6; width: 1%;"></div>
+        <div class="bar" style="background-color: #3498DB; width: 0%;"></div>
+        <div class="bar" style="background-color: #E74C3C; width: 2%;"></div>
+        <div class="bar" style="background-color: #7D3C98; width: 1%;"></div>
+      </div>
+    </div>
+    <div class="chart-bar">
+      <div class="month">Jul 2025</div>
+      <div class="bars">
+        <div class="bar" style="background-color: #FF6B6B; width: 0%;"></div>
+        <div class="bar" style="background-color: #4ECDC4; width: 0%;"></div>
+        <div class="bar" style="background-color: #45B7D1; width: 0%;"></div>
+        <div class="bar" style="background-color: #96CEB4; width: 0%;"></div>
+        <div class="bar" style="background-color: #FFEEAD; width: 0%;"></div>
+        <div class="bar" style="background-color: #D4A5A5; width: 0%;"></div>
+        <div class="bar" style="background-color: #9B59B6; width: 0%;"></div>
+        <div class="bar" style="background-color: #3498DB; width: 0%;"></div>
+        <div class="bar" style="background-color: #E74C3C; width: 0%;"></div>
+        <div class="bar" style="background-color: #7D3C98; width: 0%;"></div>
+      </div>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-color" style="background-color: #FF6B6B;"></span>Jezabel Toribio</div>
+      <div class="legend-item"><span class="legend-color" style="background-color: #4ECDC4;"></span>David Ovalle</div>
+      <div class="legend-item"><span class="legend-color" style="background-color: #45B7D1;"></span>Yscania Munoz</div>
+      <div class="legend-item"><span class="legend-color" style="background-color: #96CEB4;"></span>Eloisa Quinones</div>
+      <div class="legend-item"><span class="legend-color" style="background-color: #FFEEAD;"></span>Johanny Garcia</div>
+      <div class="legend-item"><span class="legend-color" style="background-color: #D4A5A5;"></span>Manuel Hidalgo</div>
+      <div class="legend-item"><span class="legend-color" style="background-color: #9B59B6;"></span>Frederic Olivo</div>
+      <div class="legend-item"><span class="legend-color" style="background-color: #3498DB;"></span>Emmanuel Polanco</div>
+      <div class="legend-item"><span class="legend-color" style="background-color: #E74C3C;"></span>Guliett Barniquez</div>
+      <div class="legend-item"><span class="legend-color" style="background-color: #7D3C98;"></span>Natacha Barrios</div>
+    </div>
+  </div>
 
-  <script type="text/babel">
-    const data = [
-      { month: 'Ene 2025', 'Jezabel Toribio': 9, 'David Ovalle': 6, 'Yscania Munoz': 3, 'Eloisa Quinones': 5, 'Johanny Garcia': 5, 'Manuel Hidalgo': 7, 'Frederic Olivo': 0, 'Emmanuel Polanco': 4, 'Guliett Barniquez': 0, 'Natacha Barrios': 0 },
-      { month: 'Feb 2025', 'Jezabel Toribio': 10, 'David Ovalle': 7, 'Yscania Munoz': 8, 'Eloisa Quinones': 7, 'Johanny Garcia': 11, 'Manuel Hidalgo': 8, 'Frederic Olivo': 0, 'Emmanuel Polanco': 3, 'Guliett Barniquez': 0, 'Natacha Barrios': 0 },
-      { month: 'Mar 2025', 'Jezabel Toribio': 7, 'David Ovalle': 4, 'Yscania Munoz': 6, 'Eloisa Quinones': 6, 'Johanny Garcia': 6, 'Manuel Hidalgo': 6, 'Frederic Olivo': 3, 'Emmanuel Polanco': 4, 'Guliett Barniquez': 3, 'Natacha Barrios': 0 },
-      { month: 'Abr 2025', 'Jezabel Toribio': 5, 'David Ovalle': 8, 'Yscania Munoz': 2, 'Eloisa Quinones': 6, 'Johanny Garcia': 6, 'Manuel Hidalgo': 6, 'Frederic Olivo': 1, 'Emmanuel Polanco': 0, 'Guliett Barniquez': 4, 'Natacha Barrios': 0 },
-      { month: 'May 2025', 'Jezabel Toribio': 6, 'David Ovalle': 2, 'Yscania Munoz': 0, 'Eloisa Quinones': 0, 'Johanny Garcia': 4, 'Manuel Hidalgo': 4, 'Frederic Olivo': 2, 'Emmanuel Polanco': 0, 'Guliett Barniquez': 2, 'Natacha Barrios': 0 },
-      { month: 'Jun 2025', 'Jezabel Toribio': 2, 'David Ovalle': 2, 'Yscania Munoz': 0, 'Eloisa Quinones': 0, 'Johanny Garcia': 1, 'Manuel Hidalgo': 0, 'Frederic Olivo': 1, 'Emmanuel Polanco': 0, 'Guliett Barniquez': 2, 'Natacha Barrios': 1 },
-      { month: 'Jul 2025', 'Jezabel Toribio': 0, 'David Ovalle': 0, 'Yscania Munoz': 0, 'Eloisa Quinones': 0, 'Johanny Garcia': 0, 'Manuel Hidalgo': 0, 'Frederic Olivo': 0, 'Emmanuel Polanco': 0, 'Guliett Barniquez': 0, 'Natacha Barrios': 0 }
-    ];
+  <div class="table-container">
+    <h2 class="text-2xl font-bold mb-4 text-center">Razones de Cancelación por Representante</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Representante</th>
+          <th>Razón Principal</th>
+          <th>Porcentaje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Jezabel Toribio</td><td>CANCELLATION DUE TO NSF</td><td>28.13%</td></tr>
+        <tr><td>David Ovalle</td><td>Familiar le pagara la deuda</td><td>20.83%</td></tr>
+        <tr><td>Yscania Munoz</td><td>CANCELLATION DUE TO NSF</td><td>20.83%</td></tr>
+        <tr><td>Eloisa Quinones</td><td>CANCELLATION DUE TO NSF</td><td>23.08%</td></tr>
+        <tr><td>Johanny Garcia</td><td>Familiar le pagara la deuda</td><td>14.29%</td></tr>
+        <tr><td>Manuel Hidalgo</td><td>Cliente pagara el mismo las deudas</td><td>19.23%</td></tr>
+        <tr><td>Frederic Olivo</td><td>No se pudo contactar al cliente</td><td>40.00%</td></tr>
+        <tr><td>Emmanuel Polanco</td><td>CANCELLATION DUE TO NSF</td><td>28.57%</td></tr>
+        <tr><td>Guliett Barniquez</td><td>CANCELLATION DUE TO NSF</td><td>25.00%</td></tr>
+        <tr><td>Natacha Barrios</td><td>Negocio directo con el acreedor</td><td>100.00%</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-    const colors = {
-      'Jezabel Toribio': '#FF6B6B',
-      'David Ovalle': '#4ECDC4',
-      'Yscania Munoz': '#45B7D1',
-      'Eloisa Quinones': '#96CEB4',
-      'Johanny Garcia': '#FFEEAD',
-      'Manuel Hidalgo': '#D4A5A5',
-      'Frederic Olivo': '#9B59B6',
-      'Emmanuel Polanco': '#3498DB',
-      'Guliett Barniquez': '#E74C3C',
-      'Natacha Barrios': '#7D3C98'
-    };
-
-    const cancellationReasons = {
-      'Jezabel Toribio': [
-        { reason: 'CANCELLATION DUE TO NSF', count: 9, percentage: 28.13 },
-        { reason: 'No puede pagar el programa', count: 5, percentage: 15.63 },
-        { reason: 'No se pudo contactar al cliente para retencion', count: 3, percentage: 9.38 },
-        { reason: 'Cliente dice que no le interesa el programa', count: 2, percentage: 6.25 },
-        { reason: 'Familiar le pagara la deuda', count: 2, percentage: 6.25 },
-        { reason: 'Consiguio un prestamo', count: 2, percentage: 6.25 },
-        { reason: 'Otras razones', count: 7, percentage: 21.88 },
-        { reason: 'Cliente no quiere que se le dañe el credito', count: 1, percentage: 3.13 },
-        { reason: 'Complicaciones medicas No puede pagar Programa', count: 1, percentage: 3.13 }
-      ],
-      'David Ovalle': [
-        { reason: 'Familiar le pagara la deuda', count: 5, percentage: 20.83 },
-        { reason: 'CANCELLATION DUE TO NSF', count: 4, percentage: 16.67 },
-        { reason: 'Cliente no quiere que se le dañe el credito', count: 3, percentage: 12.50 },
-        { reason: 'Cliente dice que no le interesa el programa', count: 2, percentage: 8.33 },
-        { reason: 'No puede pagar el programa', count: 2, percentage: 8.33 },
-        { reason: 'Cliente pagara el mismo las deudas', count: 2, percentage: 8.33 },
-        { reason: 'bankruptcy', count: 2, percentage: 8.33 },
-        { reason: 'No vio progreso en el programa', count: 1, percentage: 4.17 },
-        { reason: 'Otras razones', count: 3, percentage: 12.50 }
-      ],
-      'Yscania Munoz': [
-        { reason: 'CANCELLATION DUE TO NSF', count: 5, percentage: 20.83 },
-        { reason: 'No puede pagar el programa', count: 4, percentage: 16.67 },
-        { reason: 'Consiguio un prestamo', count: 3, percentage: 12.50 },
-        { reason: 'Cliente esta con otra compañia', count: 3, percentage: 12.50 },
-        { reason: 'No se pudo contactar al cliente para retencion', count: 1, percentage: 4.17 },
-        { reason: 'Cliente dice que no le interesa el programa', count: 1, percentage: 4.17 },
-        { reason: 'Se mudo fuera dle pais no regresara', count: 1, percentage: 4.17 },
-        { reason: 'Le robaron la indentidad esta en un proceso judicial', count: 1, percentage: 4.17 },
-        { reason: 'El cliente esta interesado en un prestamo de consolidacion', count: 1, percentage: 4.17 },
-        { reason: 'Otras razones', count: 4, percentage: 16.67 }
-      ],
-      'Eloisa Quinones': [
-        { reason: 'CANCELLATION DUE TO NSF', count: 6, percentage: 23.08 },
-        { reason: 'Familiar le pagara la deuda', count: 2, percentage: 7.69 },
-        { reason: 'No se pudo contactar al cliente para retencion', count: 2, percentage: 7.69 },
-        { reason: 'No puede pagar el programa', count: 2, percentage: 7.69 },
-        { reason: 'Cliente pagara el mismo las deudas', count: 2, percentage: 7.69 },
-        { reason: 'bankruptcy', count: 1, percentage: 3.85 },
-        { reason: 'No se siente conforme con el servicio', count: 1, percentage: 3.85 },
-        { reason: 'Cliente no quizo dar razon', count: 1, percentage: 3.85 },
-        { reason: 'Los acreedores le están llamando mucho dice que pagar el mismo las deudas', count: 1, percentage: 3.85 },
-        { reason: 'Otras razones', count: 5, percentage: 19.23 },
-        { reason: 'Cleinte se divorcio, las deudas estan anombre de ambos no quiere pagarlas sola', count: 1, percentage: 3.85 },
-        { reason: 'El esposo es veterano y no se encuentra bien de salud ni mentalmente; no recuerda haberse inscrito en el programa. La co-aplicante, su esposa, también desconocía el proceso y solicitó la cancelación muy molesta.', count: 1, percentage: 3.85 }
-      ],
-      'Johanny Garcia': [
-        { reason: 'Familiar le pagara la deuda', count: 4, percentage: 14.29 },
-        { reason: 'Cliente pagara el mismo las deudas', count: 4, percentage: 14.29 },
-        { reason: 'CANCELLATION DUE TO NSF', count: 3, percentage: 10.71 },
-        { reason: 'bankruptcy', count: 3, percentage: 10.71 },
-        { reason: 'No puede pagar el programa', count: 3, percentage: 10.71 },
-        { reason: 'No se pudo contactar al cliente para retencion', count: 2, percentage: 7.14 },
-        { reason: 'Cliente dice que no le interesa el programa', count: 1, percentage: 3.57 },
-        { reason: 'Recivio una demanda esta asustado', count: 1, percentage: 3.57 },
-        { reason: 'Consiguio un prestamo', count: 1, percentage: 3.57 },
-        { reason: 'La clienta está comprando una casa y el banco le exige salir del programa para aprobar el préstamo.', count: 1, percentage: 3.57 },
-        { reason: 'Cliente no quiere que se le dañe el credito', count: 1, percentage: 3.57 },
-        { reason: 'Negocio directo con el acreedor', count: 1, percentage: 3.57 },
-        { reason: 'Otras razones', count: 3, percentage: 10.71 }
-      ],
-      'Manuel Hidalgo': [
-        { reason: 'Familiar le pagara la deuda', count: 3, percentage: 11.54 },
-        { reason: 'CANCELLATION DUE TO NSF', count: 3, percentage: 11.54 },
-        { reason: 'No puede pagar el programa', count: 3, percentage: 11.54 },
-        { reason: 'Cliente pagara el mismo las deudas', count: 5, percentage: 19.23 },
-        { reason: 'bankruptcy', count: 2, percentage: 7.69 },
-        { reason: 'No se pudo contactar al cliente para retencion', count: 1, percentage: 3.85 },
-        { reason: 'Cliente dice que no le interesa el programa', count: 1, percentage: 3.85 },
-        { reason: 'Recivio una demanda esta asustado', count: 1, percentage: 3.85 },
-        { reason: 'Consiguio un prestamo', count: 1, percentage: 3.85 },
-        { reason: 'Cliente prefiere hacer pagos minimos', count: 1, percentage: 3.85 },
-        { reason: 'Cliente prefiere pagar el mismo', count: 1, percentage: 3.85 },
-        { reason: 'Otras razones', count: 4, percentage: 15.38 }
-      ],
-      'Frederic Olivo': [
-        { reason: 'No se pudo contactar al cliente para retencion', count: 2, percentage: 40.00 },
-        { reason: 'Se fue a otra compañia', count: 1, percentage: 20.00 },
-        { reason: 'No a visto progreso en su programa', count: 1, percentage: 20.00 },
-        { reason: 'Negocio directo con el acreedor', count: 1, percentage: 20.00 }
-      ],
-      'Emmanuel Polanco': [
-        { reason: 'CANCELLATION DUE TO NSF', count: 4, percentage: 28.57 },
-        { reason: 'No puede pagar el programa', count: 2, percentage: 14.29 },
-        { reason: 'Cliente no quiere que se le dañe el credito', count: 2, percentage: 14.29 },
-        { reason: 'Cliente no se siente seguro con el programa', count: 1, percentage: 7.14 },
-        { reason: 'No quiere que se le dañe el crédito, los acreedores le están llamando mucho dice que pagar el mismo las deudas.', count: 1, percentage: 7.14 },
-        { reason: 'Múltiples preocupaciones sobre el programa', count: 1, percentage: 7.14 },
-        { reason: 'Otras razones', count: 3, percentage: 21.43 }
-      ],
-      'Guliett Barniquez': [
-        { reason: 'CANCELLATION DUE TO NSF', count: 3, percentage: 25.00 },
-        { reason: 'No puede pagar el programa', count: 2, percentage: 16.67 },
-        { reason: 'No se pudo contactar al cliente para retencion', count: 1, percentage: 8.33 },
-        { reason: 'Cliente se va del pais', count: 1, percentage: 8.33 },
-        { reason: 'Pagar las deudas de otra manera', count: 1, percentage: 8.33 },
-        { reason: 'bankruptcy', count: 1, percentage: 8.33 },
-        { reason: 'El cliente recibio un prestamo', count: 1, percentage: 8.33 },
-        { reason: 'Cliente esta en otro programa', count: 1, percentage: 8.33 },
-        { reason: 'Familiar no esta de acuerdo con el programa', count: 1, percentage: 8.33 }
-      ],
-      'Natacha Barrios': [
-        { reason: 'Negocio directo con el acreedor', count: 1, percentage: 100.00 }
-      ]
-    };
-
-    const overallReasons = [
-      { reason: 'CANCELLATION DUE TO NSF', percentage: 21.03 },
-      { reason: 'Familiar le pagara la deuda', percentage: 12.07 },
-      { reason: 'No puede pagar el programa', percentage: 11.21 },
-      { reason: 'Cliente pagara el mismo las deudas', percentage: 10.34 },
-      { reason: 'No se pudo contactar al cliente para retencion', percentage: 6.90 },
-      { reason: 'Consiguio un prestamo', percentage: 5.17 },
-      { reason: 'bankruptcy', percentage: 5.17 },
-      { reason: 'Cliente dice que no le interesa el programa', percentage: 4.31 },
-      { reason: 'Cliente no quiere que se le dañe el credito', percentage: 4.31 },
-      { reason: 'Otras razones', percentage: 19.83 }
-    ];
-
-    const paymentClearedData = {
-      totalClients: 116,
-      clearedFirstPayment: 40,
-      notClearedFirstPayment: 60
-    };
-
-    const StackedBarChart = () => {
-      const [selectedRep, setSelectedRep] = React.useState(null);
-
-      const handleLegendClick = (rep) => {
-        setSelectedRep(rep.dataKey);
-      };
-
-      return (
-        <div className="bg-white p-6 rounded-lg shadow-lg max-w-6xl mx-auto">
-          <h2 className="text-2xl font-bold mb-4 text-center">Cancelaciones por Mes y Representante</h2>
-          <Recharts.ResponsiveContainer width="100%" height={400}>
-            <Recharts.BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <Recharts.CartesianGrid strokeDasharray="3 3" />
-              <Recharts.XAxis dataKey="month" />
-              <Recharts.YAxis label={{ value: 'Cancelaciones', angle: -90, position: 'insideLeft' }} />
-              <Recharts.Tooltip />
-              <Recharts.Legend onClick={handleLegendClick} />
-              {Object.keys(colors).map(rep => (
-                <Recharts.Bar key={rep} dataKey={rep} stackId="a" fill={colors[rep]} />
-              ))}
-            </Recharts.BarChart>
-          </Recharts.ResponsiveContainer>
-
-          {selectedRep && (
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">Razones de Cancelación para {selectedRep}</h3>
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="bg-gray-200">
-                    <th className="p-2 border">Razón</th>
-                    <th className="p-2 border">Cantidad</th>
-                    <th className="p-2 border">Porcentaje</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cancellationReasons[selectedRep].map((item, index) => (
-                    <tr key={index} className="hover:bg-gray-100">
-                      <td className="p-2 border">{item.reason}</td>
-                      <td className="p-2 border">{item.count}</td>
-                      <td className="p-2 border">{item.percentage.toFixed(2)}%</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-            <h3 className="text-xl font-semibold mb-2">Razones de Cancelación Más Comunes (Global)</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {overallReasons.map((item, index) => (
-                <div key={index} className="bg-white p-4 rounded-lg shadow">
-                  <h4 className="font-medium">{item.reason}</h4>
-                  <p className="text-gray-600">{item.percentage.toFixed(2)}%</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-            <h3 className="text-xl font-semibold mb-2">Porcentaje de Clientes Cancelados por Estado del Primer Pago</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-white p-4 rounded-lg shadow">
-                <h4 className="font-medium">Primer Pago Aclarado</h4>
-                <p className="text-green-600 text-2xl">{paymentClearedData.clearedFirstPayment}%</p>
-              </div>
-              <div className="bg-white p-4 rounded-lg shadow">
-                <h4 className="font-medium">Primer Pago No Aclarado</h4>
-                <p className="text-red-600 text-2xl">{paymentClearedData.notClearedFirstPayment}%</p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-600 mt-2">Total de clientes cancelados: {paymentClearedData.totalClients}</p>
-          </div>
-
-          <p className="text-sm text-gray-600 mt-4">
-            <strong>Nota:</strong> Febrero 2025 muestra el mayor número de cancelaciones (54), con Johanny Garcia liderando con 11 cancelaciones. Haz clic en un nombre de la leyenda para ver las razones de cancelación de ese representante.
-          </p>
-        </div>
-      );
-    };
-
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<StackedBarChart />);
-  </script>
+  <div class="payment-stats">
+    <div class="stat-box">
+      <h3 class="text-xl font-semibold">Primer Pago Aclarado</h3>
+      <p class="text-green-600 text-2xl">40%</p>
+    </div>
+    <div class="stat-box">
+      <h3 class="text-xl font-semibold">Primer Pago No Aclarado</h3>
+      <p class="text-red-600 text-2xl">60%</p>
+    </div>
+  </div>
+  <p class="text-sm text-gray-600 mt-4 text-center">Total de clientes cancelados: 116</p>
 </body>
 </html>
