@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cancelaciones Interactivo por Mes y Representante</title>
+  <script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.min.js"></script>
+</head>
+<body class="bg-gray-100 p-6">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // Datos (mantén los mismos datos que proporcionaste, pero aquí va el resto del código JSX)
+    const data = [
+      { month: 'Ene 2025', 'Jezabel Toribio': 9, 'David Ovalle': 6, 'Yscania Munoz': 3, 'Eloisa Quinones': 5, 'Johanny Garcia': 5, 'Manuel Hidalgo': 7, 'Frederic Olivo': 0, 'Emmanuel Polanco': 4, 'Guliett Barniquez': 0, 'Natacha Barrios': 0 },
+      // ... resto de los datos
+    ];
+    const colors = {
+      'Jezabel Toribio': '#FF6B6B',
+      // ... resto de los colores
+    };
+    const cancellationReasons = {
+      'Jezabel Toribio': [
+        { reason: 'CANCELLATION DUE TO NSF', count: 9, percentage: 28.13 },
+        // ... resto de las razones
+      ],
+      // ... resto de los representantes
+    };
+    const overallReasons = [
+      { reason: 'CANCELLATION DUE TO NSF', percentage: 21.03 },
+      // ... resto de las razones globales
+    ];
+    const paymentClearedData = {
+      totalClients: 116,
+      clearedFirstPayment: 40,
+      notClearedFirstPayment: 60
+    };
+
+    const StackedBarChart = () => {
+      const [selectedRep, setSelectedRep] = React.useState(null);
+
+      const handleLegendClick = (rep) => {
+        setSelectedRep(rep.dataKey);
+      };
+
+      return (
+        <div className="bg-white p-6 rounded-lg shadow-lg max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold mb-4 text-center">Cancelaciones por Mes y Representante</h2>
+          <Recharts.ResponsiveContainer width="100%" height={400}>
+            <Recharts.BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+              <Recharts.CartesianGrid strokeDasharray="3 3" />
+              <Recharts.XAxis dataKey="month" />
+              <Recharts.YAxis label={{ value: 'Cancelaciones', angle: -90, position: 'insideLeft' }} />
+              <Recharts.Tooltip />
+              <Recharts.Legend onClick={handleLegendClick} />
+              {Object.keys(colors).map(rep => (
+                <Recharts.Bar key={rep} dataKey={rep} stackId="a" fill={colors[rep]} />
+              ))}
+            </Recharts.BarChart>
+          </Recharts.ResponsiveContainer>
+
+          {selectedRep && (
+            <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+              <h3 className="text-xl font-semibold mb-2">Razones de Cancelación para {selectedRep}</h3>
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-gray-200">
+                    <th className="p-2 border">Razón</th>
+                    <th className="p-2 border">Cantidad</th>
+                    <th className="p-2 border">Porcentaje</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cancellationReasons[selectedRep].map((item, index) => (
+                    <tr key={index} className="hover:bg-gray-100">
+                      <td className="p-2 border">{item.reason}</td>
+                      <td className="p-2 border">{item.count}</td>
+                      <td className="p-2 border">{item.percentage.toFixed(2)}%</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+            <h3 className="text-xl font-semibold mb-2">Razones de Cancelación Más Comunes (Global)</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {overallReasons.map((item, index) => (
+                <div key={index} className="bg-white p-4 rounded-lg shadow">
+                  <h4 className="font-medium">{item.reason}</h4>
+                  <p className="text-gray-600">{item.percentage.toFixed(2)}%</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+            <h3 className="text-xl font-semibold mb-2">Porcentaje de Clientes Cancelados por Estado del Primer Pago</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="bg-white p-4 rounded-lg shadow">
+                <h4 className="font-medium">Primer Pago Aclarado</h4>
+                <p className="text-green-600 text-2xl">{paymentClearedData.clearedFirstPayment}%</p>
+              </div>
+              <div className="bg-white p-4 rounded-lg shadow">
+                <h4 className="font-medium">Primer Pago No Aclarado</h4>
+                <p className="text-red-600 text-2xl">{paymentClearedData.notClearedFirstPayment}%</p>
+              </div>
+            </div>
+            <p className="text-sm text-gray-600 mt-2">Total de clientes cancelados: {paymentClearedData.totalClients}</p>
+          </div>
+
+          <p className="text-sm text-gray-600 mt-4">
+            <strong>Nota:</strong> Febrero 2025 muestra el mayor número de cancelaciones (54), con Johanny Garcia liderando con 11 cancelaciones. Haz clic en un nombre de la leyenda para ver las razones de cancelación de ese representante.
+          </p>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<StackedBarChart />);
+  </script>
+</body>
+</html>
