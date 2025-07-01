@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cancelaciones por Mes y Representante</title>
+  <title>Cancelaciones Interactivo por Mes y Representante</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
   <style>
     .chart-container {
       width: 100%;
@@ -14,40 +15,15 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-    .chart-bar {
-      display: flex;
-      margin-bottom: 10px;
-    }
-    .month {
-      width: 100px;
-      text-align: right;
-      padding-right: 10px;
-      font-weight: bold;
-    }
-    .bars {
-      flex-grow: 1;
-      display: flex;
-      height: 30px;
-    }
-    .bar {
-      height: 100%;
-      margin-right: 2px;
-    }
-    .legend {
+    .details {
       margin-top: 20px;
-      text-align: center;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: none;
     }
-    .legend-item {
-      display: inline-block;
-      margin: 0 10px;
-    }
-    .legend-color {
-      width: 15px;
-      height: 15px;
-      display: inline-block;
-      margin-right: 5px;
-    }
-    .table-container {
+    .global-stats {
       margin-top: 20px;
       background: #fff;
       padding: 15px;
@@ -71,10 +47,6 @@
       margin-top: 20px;
       display: flex;
       justify-content: space-around;
-      background: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     .stat-box {
       text-align: center;
@@ -84,160 +56,140 @@
 <body class="bg-gray-100 p-6">
   <div class="chart-container">
     <h2 class="text-2xl font-bold mb-4 text-center">Cancelaciones por Mes y Representante</h2>
-    <div class="chart-bar">
-      <div class="month">Ene 2025</div>
-      <div class="bars">
-        <div class="bar" style="background-color: #FF6B6B; width: 9%;"></div> <!-- Jezabel Toribio -->
-        <div class="bar" style="background-color: #4ECDC4; width: 6%;"></div> <!-- David Ovalle -->
-        <div class="bar" style="background-color: #45B7D1; width: 3%;"></div> <!-- Yscania Munoz -->
-        <div class="bar" style="background-color: #96CEB4; width: 5%;"></div> <!-- Eloisa Quinones -->
-        <div class="bar" style="background-color: #FFEEAD; width: 5%;"></div> <!-- Johanny Garcia -->
-        <div class="bar" style="background-color: #D4A5A5; width: 7%;"></div> <!-- Manuel Hidalgo -->
-        <div class="bar" style="background-color: #9B59B6; width: 0%;"></div> <!-- Frederic Olivo -->
-        <div class="bar" style="background-color: #3498DB; width: 4%;"></div> <!-- Emmanuel Polanco -->
-        <div class="bar" style="background-color: #E74C3C; width: 0%;"></div> <!-- Guliett Barniquez -->
-        <div class="bar" style="background-color: #7D3C98; width: 0%;"></div> <!-- Natacha Barrios -->
-      </div>
-    </div>
-    <div class="chart-bar">
-      <div class="month">Feb 2025</div>
-      <div class="bars">
-        <div class="bar" style="background-color: #FF6B6B; width: 10%;"></div>
-        <div class="bar" style="background-color: #4ECDC4; width: 7%;"></div>
-        <div class="bar" style="background-color: #45B7D1; width: 8%;"></div>
-        <div class="bar" style="background-color: #96CEB4; width: 7%;"></div>
-        <div class="bar" style="background-color: #FFEEAD; width: 11%;"></div>
-        <div class="bar" style="background-color: #D4A5A5; width: 8%;"></div>
-        <div class="bar" style="background-color: #9B59B6; width: 0%;"></div>
-        <div class="bar" style="background-color: #3498DB; width: 3%;"></div>
-        <div class="bar" style="background-color: #E74C3C; width: 0%;"></div>
-        <div class="bar" style="background-color: #7D3C98; width: 0%;"></div>
-      </div>
-    </div>
-    <div class="chart-bar">
-      <div class="month">Mar 2025</div>
-      <div class="bars">
-        <div class="bar" style="background-color: #FF6B6B; width: 7%;"></div>
-        <div class="bar" style="background-color: #4ECDC4; width: 4%;"></div>
-        <div class="bar" style="background-color: #45B7D1; width: 6%;"></div>
-        <div class="bar" style="background-color: #96CEB4; width: 6%;"></div>
-        <div class="bar" style="background-color: #FFEEAD; width: 6%;"></div>
-        <div class="bar" style="background-color: #D4A5A5; width: 6%;"></div>
-        <div class="bar" style="background-color: #9B59B6; width: 3%;"></div>
-        <div class="bar" style="background-color: #3498DB; width: 4%;"></div>
-        <div class="bar" style="background-color: #E74C3C; width: 3%;"></div>
-        <div class="bar" style="background-color: #7D3C98; width: 0%;"></div>
-      </div>
-    </div>
-    <div class="chart-bar">
-      <div class="month">Abr 2025</div>
-      <div class="bars">
-        <div class="bar" style="background-color: #FF6B6B; width: 5%;"></div>
-        <div class="bar" style="background-color: #4ECDC4; width: 8%;"></div>
-        <div class="bar" style="background-color: #45B7D1; width: 2%;"></div>
-        <div class="bar" style="background-color: #96CEB4; width: 6%;"></div>
-        <div class="bar" style="background-color: #FFEEAD; width: 6%;"></div>
-        <div class="bar" style="background-color: #D4A5A5; width: 6%;"></div>
-        <div class="bar" style="background-color: #9B59B6; width: 1%;"></div>
-        <div class="bar" style="background-color: #3498DB; width: 0%;"></div>
-        <div class="bar" style="background-color: #E74C3C; width: 4%;"></div>
-        <div class="bar" style="background-color: #7D3C98; width: 0%;"></div>
-      </div>
-    </div>
-    <div class="chart-bar">
-      <div class="month">May 2025</div>
-      <div class="bars">
-        <div class="bar" style="background-color: #FF6B6B; width: 6%;"></div>
-        <div class="bar" style="background-color: #4ECDC4; width: 2%;"></div>
-        <div class="bar" style="background-color: #45B7D1; width: 0%;"></div>
-        <div class="bar" style="background-color: #96CEB4; width: 0%;"></div>
-        <div class="bar" style="background-color: #FFEEAD; width: 4%;"></div>
-        <div class="bar" style="background-color: #D4A5A5; width: 4%;"></div>
-        <div class="bar" style="background-color: #9B59B6; width: 2%;"></div>
-        <div class="bar" style="background-color: #3498DB; width: 0%;"></div>
-        <div class="bar" style="background-color: #E74C3C; width: 2%;"></div>
-        <div class="bar" style="background-color: #7D3C98; width: 0%;"></div>
-      </div>
-    </div>
-    <div class="chart-bar">
-      <div class="month">Jun 2025</div>
-      <div class="bars">
-        <div class="bar" style="background-color: #FF6B6B; width: 2%;"></div>
-        <div class="bar" style="background-color: #4ECDC4; width: 2%;"></div>
-        <div class="bar" style="background-color: #45B7D1; width: 0%;"></div>
-        <div class="bar" style="background-color: #96CEB4; width: 0%;"></div>
-        <div class="bar" style="background-color: #FFEEAD; width: 1%;"></div>
-        <div class="bar" style="background-color: #D4A5A5; width: 0%;"></div>
-        <div class="bar" style="background-color: #9B59B6; width: 1%;"></div>
-        <div class="bar" style="background-color: #3498DB; width: 0%;"></div>
-        <div class="bar" style="background-color: #E74C3C; width: 2%;"></div>
-        <div class="bar" style="background-color: #7D3C98; width: 1%;"></div>
-      </div>
-    </div>
-    <div class="chart-bar">
-      <div class="month">Jul 2025</div>
-      <div class="bars">
-        <div class="bar" style="background-color: #FF6B6B; width: 0%;"></div>
-        <div class="bar" style="background-color: #4ECDC4; width: 0%;"></div>
-        <div class="bar" style="background-color: #45B7D1; width: 0%;"></div>
-        <div class="bar" style="background-color: #96CEB4; width: 0%;"></div>
-        <div class="bar" style="background-color: #FFEEAD; width: 0%;"></div>
-        <div class="bar" style="background-color: #D4A5A5; width: 0%;"></div>
-        <div class="bar" style="background-color: #9B59B6; width: 0%;"></div>
-        <div class="bar" style="background-color: #3498DB; width: 0%;"></div>
-        <div class="bar" style="background-color: #E74C3C; width: 0%;"></div>
-        <div class="bar" style="background-color: #7D3C98; width: 0%;"></div>
-      </div>
-    </div>
-    <div class="legend">
-      <div class="legend-item"><span class="legend-color" style="background-color: #FF6B6B;"></span>Jezabel Toribio</div>
-      <div class="legend-item"><span class="legend-color" style="background-color: #4ECDC4;"></span>David Ovalle</div>
-      <div class="legend-item"><span class="legend-color" style="background-color: #45B7D1;"></span>Yscania Munoz</div>
-      <div class="legend-item"><span class="legend-color" style="background-color: #96CEB4;"></span>Eloisa Quinones</div>
-      <div class="legend-item"><span class="legend-color" style="background-color: #FFEEAD;"></span>Johanny Garcia</div>
-      <div class="legend-item"><span class="legend-color" style="background-color: #D4A5A5;"></span>Manuel Hidalgo</div>
-      <div class="legend-item"><span class="legend-color" style="background-color: #9B59B6;"></span>Frederic Olivo</div>
-      <div class="legend-item"><span class="legend-color" style="background-color: #3498DB;"></span>Emmanuel Polanco</div>
-      <div class="legend-item"><span class="legend-color" style="background-color: #E74C3C;"></span>Guliett Barniquez</div>
-      <div class="legend-item"><span class="legend-color" style="background-color: #7D3C98;"></span>Natacha Barrios</div>
-    </div>
+    <canvas id="myChart"></canvas>
   </div>
 
-  <div class="table-container">
-    <h2 class="text-2xl font-bold mb-4 text-center">Razones de Cancelación por Representante</h2>
-    <table>
+  <div class="details" id="details">
+    <h3 class="text-xl font-semibold mb-2">Razones de Cancelación</h3>
+    <table id="detailsTable">
       <thead>
         <tr>
-          <th>Representante</th>
-          <th>Razón Principal</th>
+          <th>Razón</th>
+          <th>Cantidad</th>
+          <th>Porcentaje</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div class="global-stats">
+    <h3 class="text-xl font-semibold mb-2">Razones de Cancelación Más Comunes (Global)</h3>
+    <table id="globalTable">
+      <thead>
+        <tr>
+          <th>Razón</th>
           <th>Porcentaje</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>Jezabel Toribio</td><td>CANCELLATION DUE TO NSF</td><td>28.13%</td></tr>
-        <tr><td>David Ovalle</td><td>Familiar le pagara la deuda</td><td>20.83%</td></tr>
-        <tr><td>Yscania Munoz</td><td>CANCELLATION DUE TO NSF</td><td>20.83%</td></tr>
-        <tr><td>Eloisa Quinones</td><td>CANCELLATION DUE TO NSF</td><td>23.08%</td></tr>
-        <tr><td>Johanny Garcia</td><td>Familiar le pagara la deuda</td><td>14.29%</td></tr>
-        <tr><td>Manuel Hidalgo</td><td>Cliente pagara el mismo las deudas</td><td>19.23%</td></tr>
-        <tr><td>Frederic Olivo</td><td>No se pudo contactar al cliente</td><td>40.00%</td></tr>
-        <tr><td>Emmanuel Polanco</td><td>CANCELLATION DUE TO NSF</td><td>28.57%</td></tr>
-        <tr><td>Guliett Barniquez</td><td>CANCELLATION DUE TO NSF</td><td>25.00%</td></tr>
-        <tr><td>Natacha Barrios</td><td>Negocio directo con el acreedor</td><td>100.00%</td></tr>
+        <tr><td>CANCELLATION DUE TO NSF</td><td>21.03%</td></tr>
+        <tr><td>Familiar le pagara la deuda</td><td>12.07%</td></tr>
+        <tr><td>No puede pagar el programa</td><td>11.21%</td></tr>
+        <tr><td>Cliente pagara el mismo las deudas</td><td>10.34%</td></tr>
+        <tr><td>No se pudo contactar al cliente para retencion</td><td>6.90%</td></tr>
+        <tr><td>Consiguio un prestamo</td><td>5.17%</td></tr>
+        <tr><td>bankruptcy</td><td>5.17%</td></tr>
+        <tr><td>Cliente dice que no le interesa el programa</td><td>4.31%</td></tr>
+        <tr><td>Cliente no quiere que se le dañe el credito</td><td>4.31%</td></tr>
+        <tr><td>Otras razones</td><td>19.83%</td></tr>
       </tbody>
     </table>
+
+    <div class="payment-stats mt-4">
+      <div class="stat-box">
+        <h3 class="text-xl font-semibold">Primer Pago Aclarado</h3>
+        <p class="text-green-600 text-2xl">40%</p>
+      </div>
+      <div class="stat-box">
+        <h3 class="text-xl font-semibold">Primer Pago No Aclarado</h3>
+        <p class="text-red-600 text-2xl">60%</p>
+      </div>
+    </div>
+    <p class="text-sm text-gray-600 mt-2 text-center">Total de clientes cancelados: 116</p>
   </div>
 
-  <div class="payment-stats">
-    <div class="stat-box">
-      <h3 class="text-xl font-semibold">Primer Pago Aclarado</h3>
-      <p class="text-green-600 text-2xl">40%</p>
-    </div>
-    <div class="stat-box">
-      <h3 class="text-xl font-semibold">Primer Pago No Aclarado</h3>
-      <p class="text-red-600 text-2xl">60%</p>
-    </div>
-  </div>
-  <p class="text-sm text-gray-600 mt-4 text-center">Total de clientes cancelados: 116</p>
+  <script>
+    const data = {
+      labels: ['Ene 2025', 'Feb 2025', 'Mar 2025', 'Abr 2025', 'May 2025', 'Jun 2025', 'Jul 2025'],
+      datasets: [
+        { label: 'Jezabel Toribio', data: [9, 10, 7, 5, 6, 2, 0], backgroundColor: '#FF6B6B' },
+        { label: 'David Ovalle', data: [6, 7, 4, 8, 2, 2, 0], backgroundColor: '#4ECDC4' },
+        { label: 'Yscania Munoz', data: [3, 8, 6, 2, 0, 0, 0], backgroundColor: '#45B7D1' },
+        { label: 'Eloisa Quinones', data: [5, 7, 6, 6, 0, 0, 0], backgroundColor: '#96CEB4' },
+        { label: 'Johanny Garcia', data: [5, 11, 6, 6, 4, 1, 0], backgroundColor: '#FFEEAD' },
+        { label: 'Manuel Hidalgo', data: [7, 8, 6, 6, 4, 0, 0], backgroundColor: '#D4A5A5' },
+        { label: 'Frederic Olivo', data: [0, 0, 3, 1, 2, 1, 0], backgroundColor: '#9B59B6' },
+        { label: 'Emmanuel Polanco', data: [4, 3, 4, 0, 0, 0, 0], backgroundColor: '#3498DB' },
+        { label: 'Guliett Barniquez', data: [0, 0, 3, 4, 2, 2, 0], backgroundColor: '#E74C3C' },
+        { label: 'Natacha Barrios', data: [0, 0, 0, 0, 0, 1, 0], backgroundColor: '#7D3C98' }
+      ]
+    };
+
+    const cancellationReasons = {
+      'Jezabel Toribio': [
+        { reason: 'CANCELLATION DUE TO NSF', count: 9, percentage: 28.13 },
+        { reason: 'No puede pagar el programa', count: 5, percentage: 15.63 },
+        { reason: 'No se pudo contactar al cliente para retencion', count: 3, percentage: 9.38 },
+        { reason: 'Cliente dice que no le interesa el programa', count: 2, percentage: 6.25 },
+        { reason: 'Familiar le pagara la deuda', count: 2, percentage: 6.25 },
+        { reason: 'Consiguio un prestamo', count: 2, percentage: 6.25 },
+        { reason: 'Otras razones', count: 7, percentage: 21.88 },
+        { reason: 'Cliente no quiere que se le dañe el credito', count: 1, percentage: 3.13 },
+        { reason: 'Complicaciones medicas No puede pagar Programa', count: 1, percentage: 3.13 }
+      ],
+      'David Ovalle': [
+        { reason: 'Familiar le pagara la deuda', count: 5, percentage: 20.83 },
+        { reason: 'CANCELLATION DUE TO NSF', count: 4, percentage: 16.67 },
+        { reason: 'Cliente no quiere que se le dañe el credito', count: 3, percentage: 12.50 },
+        { reason: 'Cliente dice que no le interesa el programa', count: 2, percentage: 8.33 },
+        { reason: 'No puede pagar el programa', count: 2, percentage: 8.33 },
+        { reason: 'Cliente pagara el mismo las deudas', count: 2, percentage: 8.33 },
+        { reason: 'bankruptcy', count: 2, percentage: 8.33 },
+        { reason: 'No vio progreso en el programa', count: 1, percentage: 4.17 },
+        { reason: 'Otras razones', count: 3, percentage: 12.50 }
+      ],
+      // Agrega los demás representantes aquí si lo necesitas, pero por brevedad solo incluyo algunos
+      'Yscania Munoz': [
+        { reason: 'CANCELLATION DUE TO NSF', count: 5, percentage: 20.83 },
+        { reason: 'No puede pagar el programa', count: 4, percentage: 16.67 },
+        { reason: 'Consiguio un prestamo', count: 3, percentage: 12.50 },
+        { reason: 'Cliente esta con otra compañia', count: 3, percentage: 12.50 }
+      ]
+    };
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: {
+        scales: {
+          x: { stacked: true },
+          y: { stacked: true, title: { display: true, text: 'Cancelaciones' } }
+        },
+        plugins: {
+          legend: {
+            onClick: (e, legendItem) => {
+              const rep = legendItem.text;
+              const details = document.getElementById('details');
+              const tableBody = document.getElementById('detailsTable').getElementsByTagName('tbody')[0];
+              tableBody.innerHTML = '';
+              if (cancellationReasons[rep]) {
+                cancellationReasons[rep].forEach(item => {
+                  const row = tableBody.insertRow();
+                  row.insertCell(0).textContent = item.reason;
+                  row.insertCell(1).textContent = item.count;
+                  row.insertCell(2).textContent = item.percentage.toFixed(2) + '%';
+                });
+                details.style.display = 'block';
+              } else {
+                details.style.display = 'none';
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
