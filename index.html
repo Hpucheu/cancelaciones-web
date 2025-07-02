@@ -60,7 +60,7 @@
   </div>
 
   <div class="details" id="details">
-    <h3 class="text-xl font-semibold mb-2">Razones de Cancelación</h3>
+    <h3 class="text-xl font-semibold mb-2" id="detailsTitle">Razones de Cancelación</h3>
     <table id="detailsTable">
       <thead>
         <tr>
@@ -249,9 +249,11 @@
             onClick: (e, legendItem) => {
               const rep = legendItem.text;
               const details = document.getElementById('details');
+              const detailsTitle = document.getElementById('detailsTitle');
               const tableBody = document.getElementById('detailsTable').getElementsByTagName('tbody')[0];
               tableBody.innerHTML = '';
               if (cancellationReasons[rep]) {
+                detailsTitle.textContent = `Razones de Cancelación - ${rep}`;
                 cancellationReasons[rep].forEach(item => {
                   const row = tableBody.insertRow();
                   row.insertCell(0).textContent = item.reason;
